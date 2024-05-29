@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)file:///C:/Users/khaireddin/web%201%20miniprojet/BoiteMessagerie/BoiteMessagerie/Stagiaire.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stagiaires MyBetaApps - Gestion des stagiaires</title>
+    <style>
+        h1 {
+            font-size: 36px;
+            color: rgb(93, 93, 207);
+            background-color: rgb(96, 183, 214);
+            padding: 10px;
+            text-align: center;
+        }
+
+        #ajoutStagiaire {
+            color: rgb(4, 70, 4);
+            background-color: rgb(130, 216, 130);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        #listeStagiaires {
+            color: rgb(56, 55, 120);
+            background-color: rgb(207, 212, 207);
+            padding: 10px;
+            margin-bottom: 20px;
+            height: 100vh; 
+            overflow-y: auto; 
+        }
+
+        #ajoutStagiaire label,
+        #ajoutStagiaire button {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        #ajoutStagiaire button {
+            color: white;
+            background-color: rgb(29, 115, 207);
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        
+        #listeStagiaires button {
+            background-color: rgb(193, 11, 11) !important;
+        }
+
+        
+        table {
+            width: 100%;
+            border-collapse: collapse; 
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Stagiaires MyBetaApps</h1>
+    <div id="ajoutStagiaire">
+        <h2>Ajouter un stagiaire</h2>
+        <label for="nomPrenom">Nom et Prenom:</label>
+        <input type="text" id="nomPrenom" placeholder="Nom ">
+        <label for="institut">Institut d'origine:</label>
+        <input type="text" id="institut" placeholder="Institut ">
+        <label for="service">Service de stage:</label>
+        <select id="service">
+            <option value="">---Sélection---</option>
+            <option value="Développement">Développement</option>
+            <option value="DevOps">DevOps</option>
+        </select>
+        <button id="enregistrerBtn">Enregistrer</button>
+    </div>
+
+    <div id="listeStagiaires">
+        <table id="tableauStagiaires">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom et Prenom</th>
+                    <th>Institut d'origine</th>
+                    <th>Service de stage</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableauBody"><tr><td>2</td><td>Ali Ben Salah</td><td>ESSAT</td><td>Développement</td><td><button class="supprimerBtn" data-id="2">Supprimer</button></td></tr><tr><td>16</td><td>Aya Ben Salah</td><td>ENIG</td><td>DevOps</td><td><button class="supprimerBtn" data-id="16">Supprimer</button></td></tr><tr><td>28</td><td>Majed Ben Salah</td><td>ISIMG</td><td>Développement</td><td><button class="supprimerBtn" data-id="28">Supprimer</button></td></tr><tr><td>29</td><td>khayridine mizen </td><td>ESSAT</td><td>Développement</td><td><button class="supprimerBtn" data-id="29">Supprimer</button></td></tr></tbody>
+        </table>
+    </div>
+
+    <script>
+        
+        var interns = [
+            { id: 2, nom: "Ali Ben Salah", institut: "ESSAT", service: "Développement" },
+            { id: 16, nom: "Aya Ben Salah", institut: "ENIG", service: "DevOps" },
+            { id: 28, nom: "Majed Ben Salah", institut: "ISIMG", service: "Développement" },
+           
+        ]
+            
+
+       
+        function afficherStagiaires() {
+            var tbody = document.getElementById("tableauBody");
+            tbody.innerHTML = ""; 
+
+            interns.forEach(function(intern) {
+                var row = "<tr>";
+                row += "<td>" + intern.id + "</td>";
+                row += "<td>" + intern.nom + "</td>";
+                row += "<td>" + intern.institut + "</td>";
+                row += "<td>" + intern.service + "</td>";
+                row += "<td><button class='supprimerBtn' data-id='" + intern.id + "'>Supprimer</button></td>";
+                row += "</tr>";
+                tbody.innerHTML += row;
+            });
+        }
+
+      
+        function ajouterStagiaire() {
+            var nomPrenom = document.getElementById("nomPrenom").value;
+            var institut = document.getElementById("institut").value;
+            var service = document.getElementById("service").value;
+            var newId = interns.length > 0 ? interns[interns.length - 1].id + 1 : 1; // Generate new ID
+
+            interns.push({ id: newId, nom: nomPrenom, institut: institut, service: service });
+
+            afficherStagiaires();
+        }
+
+        
+        function supprimerStagiaire(id) {
+            interns = interns.filter(function(intern) {
+                return intern.id !== id;
+            });
+
+            afficherStagiaires();
+        }
+
+       
+        document.getElementById("enregistrerBtn").addEventListener("click", function() {
+            ajouterStagiaire();
+        });
+
+        document.getElementById("listeStagiaires").addEventListener("click", function(event) {
+            if (event.target.classList.contains("supprimerBtn")) {
+                var id = parseInt(event.target.getAttribute("data-id"));
+                supprimerStagiaire(id);
+            }
+        });
+
+        
+        afficherStagiaires();
+    </script>
+
+</body></html>
