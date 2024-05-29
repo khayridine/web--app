@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tableua</title>
+</head>
+<body>
+    <a href="CV.html" > page suivante </a>
+    <form method="get" action="">
+     <fieldset>
+        <legend> connexion</legend>
+       username <input type ="text" name = "a1"  size="20 "  placeholder="username ici " maxlength="5">
+       password <input type="password" name="a2">
+    </fieldset>
+       <br>
+       <fieldset>
+       <legend>Education</legend>
+       votre Dept :
+        RT <input type="radio" name="x1" value="rt">
+        GL <input type="radio" name="x1" value="gl">*
+       <br>
+       Matieres :
+        PHP   <input type="checkbox" name="x2[]" value="PHP">
+        Spring   <input type="checkbox" name="x2[]" value="Spring">
+        React   <input type="checkbox" name="x2[]" value="React">
+      <br>
+        Date de naissance <input type="date" name="x3">
+        email <input type="email" name="x4" required>
+    </fieldset>
+      <br>
+         <input type="submit" value="envoyer">
+         <input type="reset">
+       
+      <br>
+       <select name="x5">
+          <option value="RT">  Departement RT</option>
+          <option value="GL" selected> Departement GL</option>
+        </select>
+        <textarea name="x7" cols="30" rows="10"></textarea>
+
+    </form>
+    <img src="a.jpg" width="50%">
+</body>
+</html>
